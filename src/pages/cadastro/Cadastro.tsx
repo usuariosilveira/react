@@ -43,6 +43,7 @@ function Cadastro() {
         })
     }
 
+    
     async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
@@ -51,21 +52,20 @@ function Cadastro() {
 
             try {
                 await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario)
-                alert('Usuário cadastrado com sucesso')
+                toastAlerta('Usuário cadastrado com sucesso', "sucesso")
 
             } catch (error) {
-                alert('Erro ao cadastrar o Usuário')
+                toastAlerta('Erro ao cadastrar o Usuário', "erro")
             }
 
         } else {
-            alert('Dados inconsistentes. Verifique as informações de cadastro.')
+            toastAlerta('Erro ao cadastrar o Usuário', "erro")
             setUsuario({ ...usuario, senha: "" })
             setConfirmaSenha("")
         }
 
         setIsLoading(false)
     }
-
     return (
         <>
             <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold">
